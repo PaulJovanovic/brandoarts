@@ -1,0 +1,15 @@
+<div class="section">
+	<% index = 0 %>
+	<% @webites.each do |website| %>
+		<% if index % 3 == 0 %>
+			<div class="row">
+		<% end %>
+				<div class="project">
+					<%= image_tag website.photos.first.image.url(:small) %>
+				</div>
+		<% if index % 3 == 0 %>
+			</div>
+		<% end %>
+		<% index += 1 %>
+	<% end %>
+</div>

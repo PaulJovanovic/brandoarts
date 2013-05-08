@@ -10,13 +10,17 @@
 </head>
 <body>
 
-<%= render :partial => "shared/navbar" %>
+<%= render :partial => "admins/navbar" %>
+
+<%= render :partial => "admins/subnavbar" %>
 
 <div id="content">
-	<%= yield %>
+	<div class="container">
+		<div class="padding">
+			<%= yield %>
+		</div>
+	</div>
 </div>
-
-<%= render :partial => "shared/footer" %>
 
 </body>
 </html>

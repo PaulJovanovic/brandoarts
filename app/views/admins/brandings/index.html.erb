@@ -1,0 +1,35 @@
+<div class="section">
+	<%= link_to new_admins_branding_path do %>
+		<div class="btn" style="float:right">add project</div>
+	<% end %>
+	<h1 style="padding-top:5px;">Branding</h1>
+	<% alternate = "odd" %>
+	<% @brandings.each do |branding| %>
+		<div class="list <%= alternate %>">
+			<table>
+				<tr>
+					<td class="drag">
+						<i class="icon-move"></i>
+					</td>
+					<td class="image">
+						<%= image_tag branding.photos.first.image.url(:thumb) %>
+					</td>
+					<td class="title">
+						<%= branding.title %>
+					</td>
+					<td class="action">
+						<%= link_to edit_admins_branding_path(branding) do %>
+							<i class="icon-edit"></i>
+						<% end %>
+					</td>
+					<td class="action">
+						<%= link_to [:admins, branding], :confirm => "Delete #{branding.title}?", :method => :delete do %>
+							<i class="icon-remove"></i>
+						<% end %>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<% alternate = alternate == "odd" ? "even" : "odd" %>
+	<% end %>
+</div>

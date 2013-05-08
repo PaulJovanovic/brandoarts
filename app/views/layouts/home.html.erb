@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cup</title>
+  <%= stylesheet_link_tag    "hunk" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+<%= render :partial => "shared/footer" %>
+
+</body>
+</html>

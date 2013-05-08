@@ -1,0 +1,28 @@
+<div id="header" class="small">
+	<div class="container">
+		<div class="padding">
+			<div class="top">
+				<%= link_to admins_path do %>
+					<img src="/assets/adminlogo.png"/>
+				<% end %>
+				<div id="navbar">
+					<div class="navbar-option">
+						<%= link_to destroy_admin_session_path, :method => :delete do %>
+							<div class="btn">
+								<i class="icon-signout"></i>
+							</div>
+						<% end %>
+					</div>
+					<div class="navbar-option">
+						<%= link_to root_path do %>
+							<div class="btn">view site</div>
+						<% end %>
+					</div>
+					<div class="navbar-option">
+						<%= current_admin.first_name %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,15 @@
+development:
+  database: d3gm61inv8nkv3
+  host: ec2-54-235-155-182.compute-1.amazonaws.com
+  port: 5432
+  username: rwchurdglgyprv
+  password: q_DFqaxO6mkKMMu9HR_pKW5r3B
+  sslmode: require
+  adapter: postgresql
+
+test:
+  adapter: mysql2
+  database: brandoarts_test
+  pool: 5  
+  timeout: 5000
+  host: localhost

@@ -1,0 +1,19 @@
+<% index = 0 %>
+<% @brandings.each do |branding| %>
+	<% if index % 3 == 0 %>
+		<div class="container">
+			<div class="padding pan">
+				<div class="section">
+					<div class="row">
+	<% end %>
+							<%= "<div class='project' data-controller='#{controller_name}' data-id='#{branding.id}'>".html_safe %>
+							<%= image_tag branding.photos.first.image.url(:small) %>
+						</div>
+	<% if index % 3 == 2 %>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% end %>
+	<% index += 1 %>
+<% end %>

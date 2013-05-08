@@ -1,0 +1,62 @@
+<div class="section">
+  <%= form_for [:admins, @branding], :html => {:multipart => true, :class => "submittable"} do |f| %>
+    <% if @branding.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@branding.errors.count, "error") %> prohibited this branding from being saved:</h2>
+
+        <ul>
+        <% @branding.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="section">
+      <div class="two-thirds">
+        <div class="prl">
+          <div class="field">
+            <%= f.label :title %><br />
+            <%= f.text_field :title %>
+          </div>
+          <div class="field">
+            <%= f.label :description %><br />
+            <%= f.text_area :description %>
+          </div>
+        </div>
+      </div>
+      <div class="one-third">
+        <label>Images</label><br/>
+        <div class="field">
+          <%= f.fields_for :photos do |p| %>
+            <%= p.file_field :image, :class => "multiple-image" %>
+            <br/>
+          <% end %>
+        </div>
+        <br/>
+        <a class="add-image">
+          <div class="btn">
+            <i class="icon-plus"></i> image
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+<script>
+  var image_count = jQuery(".multiple-image").length;
+  jQuery(document).ready(function(){
+    jQuery(".add-image").click(function(){
+      var image = "<div class='field'><input id='branding_photos_attributes_" + image_count + "_image' type='file' name='branding[photos_attributes][" + image_count + "][image]' /><br/>";
+      image_count ++;
+      jQuery(".field:last").after(image);
+    });
+
+    jQuery(".submittable").submit(function() {
+      jQuery(this).closest("form").submit();
+      jQuery(this).parent().html("<img src='/assets/logo.png'/>");
+    });
+  });
+</script>
