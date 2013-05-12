@@ -9,6 +9,8 @@ gem 'pg'
 
 gem 'devise'
 
+gem 'unicorn'
+
 gem "paperclip"
 gem 'aws-sdk'
 
