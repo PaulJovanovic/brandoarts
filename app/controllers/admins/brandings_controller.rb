@@ -1,5 +1,7 @@
 class Admins::BrandingsController < ApplicationController
 
+	before_filter :authenticate_admin!
+
 	layout "admins"
 
 	def index
@@ -21,6 +23,7 @@ class Admins::BrandingsController < ApplicationController
 
 	def create
 		@branding = Branding.new(params[:branding])
+		@branding.placement = Branding.count
 
 		if @branding.save
 	  	respond_to do |format|
@@ -62,13 +65,13 @@ class Admins::BrandingsController < ApplicationController
   end
 
 	def destroy
-    logo = Branding.where(:id => params[:id]).last
+    branding = Branding.where(:id => params[:id]).last
 
-    if logo
-	    Photo.where(:project_id => :params[:id]).each do |photo|
+    if branding
+	    Photo.where(:project_id => params[:id]).each do |photo|
 	    	photo.destroy
 	  	end
-			Branding.destroy
+			branding.destroy
 	  end
 	  respond_to do |format|
       format.html { redirect_to admins_brandings_path }

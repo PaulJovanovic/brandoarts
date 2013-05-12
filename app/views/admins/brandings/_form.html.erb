@@ -30,6 +30,7 @@
           <%= f.fields_for :photos do |p| %>
             <%= p.file_field :image, :class => "multiple-image" %>
             <br/>
+            <%= p.text_field :background_color %>
           <% end %>
         </div>
         <br/>

@@ -3,27 +3,10 @@
 		<div class="padding">
 			<div class="top">
 				<%= link_to root_path do %>
-					<img src="/assets/logonavsmall.png"/>
+					<img src="/assets/brandologosmall.png"/>
 				<% end %>
 				<div id="navbar">
-					<div class="navbar-option">
-						<%= link_to "CONTACT", "#" %>
-					</div>
-					<div class="navbar-option">
-						<%= link_to "CLIENTS", brandings_path %>
-					</div>
-					<div class="navbar-option">
-						<%= link_to "OTHER", websites_path %>
-					</div>
-					<div class="navbar-option">
-						<%= link_to "PHOTOS", websites_path %>
-					</div>
-					<div class="navbar-option">
-						<%= link_to "WEB", websites_path %>
-					</div>
-					<div class="navbar-option">
-						<%= link_to "BRANDING", brandings_path %>
-					</div>
+					<%= render :partial => "shared/navbar_links" %>
 				</div>
 			</div>
 		</div>

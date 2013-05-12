@@ -1,15 +1,17 @@
+<%= javascript_include_tag "project" %>
 <% index = 0 %>
 <% @brandings.each do |branding| %>
 	<% if index % 3 == 0 %>
 		<div class="container">
-			<div class="padding pan">
+			<div class="padding pvn">
 				<div class="section">
 					<div class="row">
 	<% end %>
-							<%= "<div class='project' data-controller='#{controller_name}' data-id='#{branding.id}'>".html_safe %>
+						<%= "<div class='project' data-controller='#{controller_name}' data-id='#{branding.id}'><div class='inner' style='background-color:#{branding.photos.first.background_color}'>".html_safe %>
 							<%= image_tag branding.photos.first.image.url(:small) %>
+							</div>
 						</div>
-	<% if index % 3 == 2 %>
+	<% if index % 3 == 2  || index == @brandings.length - 1 %>
 					</div>
 				</div>
 			</div>

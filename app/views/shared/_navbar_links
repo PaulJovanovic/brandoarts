@@ -1,0 +1,27 @@
+<div class="navbar-option">
+	<%= link_to "CLIENTS", brandings_path %>
+</div>
+<div class="navbar-option">
+	/
+</div>
+<div class="navbar-option">
+	<%= link_to "PORTFOLIO", websites_path %>
+</div>
+<div class="navbar-option">
+	/
+</div>
+<div class="navbar-option">
+	<%= link_to "PHOTO", websites_path %>
+</div>
+<div class="navbar-option">
+	/
+</div>
+<div class="navbar-option">
+	<%= link_to "WEB", websites_path %>
+</div>
+<div class="navbar-option">
+	/
+</div>
+<div class="navbar-option">
+	<%= link_to "BRANDING", brandings_path %>
+</div>

@@ -1,30 +1,12 @@
 <div id="header">
 	<div class="container">
-		<div class="padding">
+		<div class="padding" style="padding-bottom:10px">
 			<div id="arm">
-				<img style="margin-left:142px; margin-top:65.1px" src="/assets/steam.gif"/>
 			</div>
 			<div class="top">
-				<img src="/assets/logo.png"/>
+				<img class="mbl" src="/assets/brandologobig.png"/>
 				<div id="navbar">
-					<div class="navbar-option">
-						<%= link_to "CONTACT", "#" %>
-					</div>
-					<div class="navbar-option">
-						<%= link_to "CLIENTS", logos_path %>
-					</div>
-					<div class="navbar-option">
-						<%= link_to "OTHER", websites_path %>
-					</div>
-					<div class="navbar-option">
-						<%= link_to "PHOTOS", websites_path %>
-					</div>
-					<div class="navbar-option">
-						<%= link_to "WEB", websites_path %>
-					</div>
-					<div class="navbar-option">
-						<%= link_to "BRANDING", logos_path %>
-					</div>
+					<%= render :partial => "shared/navbar_links" %>
 				</div>
 			</div>
 			<h1>
@@ -39,18 +21,17 @@
 <div id="whitespace"></div>
 <div id="content">
 	<div class="container">
-		<div class="padding">
+		<div class="padding" style="padding-top:20px">
 			<div class="section">
 				<div class="two-thirds">
 					<h1 style="margin-top:20px">
 						Your company is a work of art
 					</h1>
-					<div id="get-started">
-						Get Started
+					<div class="prxl">
+						<p>
+							We approach every project as artists to express your identity as a masterpiece. Our recipe for customization starts from scratch and blends your values with progressive design. Let us create your website and brandmark as a portrait of your business.
+						</p>
 					</div>
-					<p>
-						We approach every project as artists to express your identity as a masterpiece. Our recipe for customization starts from scratch and blends your values with progressive design. Let us create your website and brandmark as a portrait of your business.
-					</p>
 				</div>
 			</div>
 			<div class="section">
