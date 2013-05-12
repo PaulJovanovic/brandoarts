@@ -1,30 +1,32 @@
-<% if @websites.count > 0 %>
-	<% index = 0 %>
-	<% @websites.each do |website| %>
-		<% if index % 3 == 0 %>
-			<div class="container">
-				<div class="padding pvn">
-					<div class="section">
-						<div class="row">
-		<% end %>
-							<%= "<div class='project' data-controller='#{controller_name[0..-2]}' data-id='#{website.id}'><div class='inner' style='background-color:#{website.photos.first.background_color}'>".html_safe %>
-								<%= image_tag website.photos.first.image.url(:small) %>
+<div class="pvl">
+	<% if @websites.count > 0 %>
+		<% index = 0 %>
+		<% @websites.each do |website| %>
+			<% if index % 3 == 0 %>
+				<div class="container">
+					<div class="padding pvn">
+						<div class="section">
+							<div class="row">
+			<% end %>
+								<%= "<div class='project' data-controller='#{controller_name[0..-2]}' data-id='#{website.id}'><div class='inner' style='background-color:#{website.photos.first.background_color}'>".html_safe %>
+									<%= image_tag website.photos.first.image.url(:small) %>
+									</div>
 								</div>
+			<% if index % 3 == 2  || index == @websites.length - 1 %>
 							</div>
-		<% if index % 3 == 2  || index == @websites.length - 1 %>
 						</div>
 					</div>
 				</div>
-			</div>
+			<% end %>
+			<% index += 1 %>
 		<% end %>
-		<% index += 1 %>
-	<% end %>
-<% else %>
-	<div class="container">
-		<div class="padding">
-			<div class="section">
-				<h1>No projects yet!</h1>
+	<% else %>
+		<div class="container">
+			<div class="padding">
+				<div class="section">
+					<h1>No projects yet!</h1>
+				</div>
 			</div>
 		</div>
-	</div>
-<% end %>
+	<% end %>
+</div>
