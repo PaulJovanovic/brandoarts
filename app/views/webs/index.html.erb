@@ -1,18 +1,18 @@
 <div class="ptl">
-	<% if @websites.count > 0 %>
+	<% if @webs.count > 0 %>
 		<% index = 0 %>
-		<% @websites.each do |website| %>
+		<% @webs.each do |website| %>
 			<% if index % 3 == 0 %>
 				<div class="container">
 					<div class="padding pvn">
 						<div class="section">
 							<div class="row">
 			<% end %>
-								<%= "<div class='project' data-controller='#{controller_name[0..-2]}' data-id='#{website.id}'><div class='inner' style='background-color:#{website.photos.first.background_color}'>".html_safe %>
-									<%= image_tag website.photos.first.image.url(:small) %>
+								<%= "<div class='project' data-controller='#{controller_name[0..-2]}' data-id='#{webs.id}'><div class='inner' style='background-color:#{web.photos.first.background_color}'>".html_safe %>
+									<%= image_tag web.photos.first.image.url(:small) %>
 									</div>
 								</div>
-			<% if index % 3 == 2  || index == @websites.length - 1 %>
+			<% if index % 3 == 2  || index == @webs.length - 1 %>
 							</div>
 						</div>
 					</div>
