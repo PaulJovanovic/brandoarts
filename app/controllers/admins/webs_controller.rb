@@ -1,4 +1,4 @@
-class Admins::WebsitesController < ApplicationController
+class Admins::WebsController < ApplicationController
 
 	before_filter :authenticate_admin!
 

@@ -1,6 +1,6 @@
-class WebsitesController < ApplicationController
+class WebsController < ApplicationController
 	def index
-		@websitess = Website.all
+		@websites = Website.all
 		
 		respond_to do |format|
 			format.html
