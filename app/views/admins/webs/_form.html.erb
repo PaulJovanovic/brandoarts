@@ -2,7 +2,7 @@
   <%= form_for [:admins, @web], :html => {:multipart => true, :class => "submittable"} do |f| %>
     <% if @web.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@web.errors.count, "error") %> prohibited this branding from being saved:</h2>
+        <h2><%= pluralize(@web.errors.count, "error") %> prohibited this website from being saved:</h2>
 
         <ul>
         <% @web.errors.full_messages.each do |msg| %>

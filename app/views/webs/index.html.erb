@@ -8,7 +8,7 @@
 						<div class="section">
 							<div class="row">
 			<% end %>
-								<%= "<div class='project' data-controller='#{controller_name[0..-2]}' data-id='#{webs.id}'><div class='inner' style='background-color:#{web.photos.first.background_color}'>".html_safe %>
+								<%= "<div class='project' data-controller='#{controller_name[0..-2]}' data-id='#{web.id}'><div class='inner' style='background-color:#{web.photos.first.background_color}'>".html_safe %>
 									<%= image_tag web.photos.first.image.url(:small) %>
 									</div>
 								</div>
