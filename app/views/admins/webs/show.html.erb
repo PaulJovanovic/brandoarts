@@ -1,0 +1,13 @@
+<div class="section">
+	<div class="two-third">
+		<h1><%= @website.title %></h1>
+		<p>
+			<%= @website.description %>
+		</p>
+	</div>
+	<div class="one-third">
+		<% @website.photos.each do |photo| %>
+			<%= image_tag photo.image.url(:small) %>
+		<% end %>
+	</div>
+</div>
