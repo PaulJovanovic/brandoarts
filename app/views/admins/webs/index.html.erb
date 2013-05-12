@@ -4,7 +4,7 @@
 	<% end %>
 	<h1 style="padding-top:5px;">Web</h1>
 	<% alternate = "odd" %>
-	<% @websites.each do |website| %>
+	<% @webs.each do |web| %>
 		<div class="list <%= alternate %>">
 			<table>
 				<tr>
@@ -12,18 +12,18 @@
 						<i class="icon-move"></i>
 					</td>
 					<td class="title">
-						<%= image_tag website.photos.first.image.url(:thumb) %>
+						<%= image_tag web.photos.first.image.url(:thumb) %>
 					</td>
 					<td>
-						<%= website.title %>
+						<%= web.title %>
 					</td>
 					<td class="action">
-						<%= link_to edit_admins_website_path(website) do %>
+						<%= link_to edit_admins_web_path(web) do %>
 							<i class="icon-edit"></i>
 						<% end %>
 					</td>
 					<td class="action">
-						<%= link_to [:admin, website], :confirm => "Delete #{branding.title}?", :method => :delete do %>
+						<%= link_to [:admin, web], :confirm => "Delete #{web.title}?", :method => :delete do %>
 							<i class="icon-remove"></i>
 						<% end %>
 					</td>

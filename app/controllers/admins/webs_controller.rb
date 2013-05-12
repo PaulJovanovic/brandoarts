@@ -5,7 +5,7 @@ class Admins::WebsController < ApplicationController
 	layout "admins"
 
 	def index
-		@websites = Website.all
+		@webs = Web.all
 
 		respond_to do |format|
 			format.html
@@ -13,8 +13,8 @@ class Admins::WebsController < ApplicationController
 	end
 
 	def new
-		@website = Website.new
-		@website.photos.build
+		@web = Web.new
+		@web.photos.build
 
 		respond_to do |format|
 			format.html
@@ -22,42 +22,42 @@ class Admins::WebsController < ApplicationController
 	end
 
 	def create
-		@website = Website.new(params[:website])
-		@website.placement = Website.count
+		@web = Web.new(params[:website])
+		@web.placement = Web.count
 		
-		if @website.save
+		if @web.save
 	  	respond_to do |format|
-	      format.html  { redirect_to(admins_website_path(@website),
+	      format.html  { redirect_to(admins_web_path(@web),
 	                    :notice => 'Website was successfully created.') }
 	    end
     else
-      redirect_to new_admins_website_path
+      redirect_to new_admins_web_path
     end
 	end
 
 	def show
-		@website = Website.where(:id => params[:id]).last
+		@web = Web.where(:id => params[:id]).last
 
-		if @website
+		if @web
 			respond_to do |format|
 				format.html
 			end
 		else
-			redirect_to admins_websites_path
+			redirect_to admins_webs_path
 		end
 		
 	end
 
 	def edit
-    @website = Website.where(:id => params[:id]).last
+    @web = Web.where(:id => params[:id]).last
   end
 
   def update
-    @website = Website.where(:id => params[:id]).last
+    @web = Web.where(:id => params[:id]).last
 
     respond_to do |format|
-      if @website.update_attributes(params[:website])
-        format.html { redirect_to admins_websites_path, notice: 'Website was successfully updated.' }
+      if @web.update_attributes(params[:website])
+        format.html { redirect_to admins_webs_path, notice: 'Website was successfully updated.' }
       else
         format.html { render action: "edit" }
       end
@@ -65,16 +65,16 @@ class Admins::WebsController < ApplicationController
   end
 
 	def destroy
-    website = Website.where(:id => params[:id]).last
+    web = Web.where(:id => params[:id]).last
 
-    if website
+    if web
 	    Photo.where(:project_id => params[:id]).each do |photo|
 	    	photo.destroy
 	  	end
-			website.destroy
+			web.destroy
 	  end
 	  respond_to do |format|
-      format.html { redirect_to admins_websites_path }
+      format.html { redirect_to admins_webs_path }
     end
   end
 

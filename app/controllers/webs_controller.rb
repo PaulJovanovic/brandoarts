@@ -1,6 +1,6 @@
 class WebsController < ApplicationController
 	def index
-		@websites = Website.all
+		@webs = Web.all
 		
 		respond_to do |format|
 			format.html
@@ -8,13 +8,13 @@ class WebsController < ApplicationController
 	end
 
 	def show
-		website = Website.where(:id => params[:id]).last
+		web = Web.where(:id => params[:id]).last
 
 		photos = []
-		website.photos.each do |photo|
+		web.photos.each do |photo|
 			photos << {:url => photo.image.url(:large), :background_color => photo.background_color}
 		end
-		website = {:title => website.title, :description => website.description, :photos => photos} 
-    render :json => website
+		web = {:title => web.title, :description => web.description, :photos => photos} 
+    render :json => web
 	end
 end
