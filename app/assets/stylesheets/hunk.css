@@ -150,7 +150,7 @@ table.push-top td{
 
 #sub-navbar {
 	background-color: #788d91;
-	color: #272023;
+	color: #414042;
 }
 
 #sub-navbar .container .padding {
@@ -160,7 +160,7 @@ table.push-top td{
 }
 
 #sub-navbar a:hover {
-	color: #272023;
+	color: #414042;
 }
 
 #whitespace {
@@ -170,7 +170,7 @@ table.push-top td{
 }
 
 #content {
-	color: #272023;
+	color: #414042;
 	background-color: #D1D3D4;
 }
 
@@ -191,7 +191,7 @@ table.push-top td{
 
 #content .container .padding .section + .section {
 	padding-top: 30px;
-	border-top: solid 1px #c5c0b8;
+	border-top: solid 1px #939598;
 }
 
 #content .container .padding .section .one-third {
@@ -257,7 +257,7 @@ table.push-top td{
 	padding:25px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	color: #272023;
+	color: #414042;
 }
 
 #content .container .padding .section .list table td.drag {
@@ -315,7 +315,7 @@ table.push-top td{
 }
 
 #content p {
-	color: #272023;
+	color: #414042;
 	font-size: 18px;
 	font-weight: 300;
 	line-height: 24px;

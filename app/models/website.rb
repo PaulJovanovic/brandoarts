@@ -1,3 +1,4 @@
 class Website < Project
-	attr_accessible :placement, :url
+	attr_accessible :url
+	attr_accessor :placement
 end

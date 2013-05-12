@@ -33,9 +33,13 @@ ProjectWindow.prototype.open = function(project, index, callback){
 		$this.isOpen = true;
 		$this.index = rowIndex;
 		jQuery("#content .container").eq($this.index).after($this.css($this.project));
-		$this.height = jQuery("#project-window .image").outerHeight() + 140;
-		jQuery("#project-window").height("0px");
-		callback();
+		var img = new Image();
+    img.src = project.photos[project.current_photo].url;
+    img.onload = function() {
+    	$this.height = this.height + 140;
+    	jQuery("#project-window").height("0px");
+			callback();
+    }
 	}
 }
 

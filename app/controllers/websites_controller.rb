@@ -1,7 +1,7 @@
 class WebsitesController < ApplicationController
 	def index
 		@websitess = Website.all
-
+		
 		respond_to do |format|
 			format.html
 		end

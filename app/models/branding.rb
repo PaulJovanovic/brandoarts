@@ -1,3 +1,3 @@
 class Branding < Project
-	attr_accessible :placement
+	attr_accessor :placement
 end
