@@ -22,9 +22,9 @@ class Admins::WebsController < ApplicationController
 	end
 
 	def create
-		@web = Web.new(params[:website])
+		@web = Web.new(params[:web])
 		@web.placement = Web.count
-		
+
 		if @web.save
 	  	respond_to do |format|
 	      format.html  { redirect_to(admins_web_path(@web),
@@ -56,7 +56,7 @@ class Admins::WebsController < ApplicationController
     @web = Web.where(:id => params[:id]).last
 
     respond_to do |format|
-      if @web.update_attributes(params[:website])
+      if @web.update_attributes(params[:web])
         format.html { redirect_to admins_webs_path, notice: 'Website was successfully updated.' }
       else
         format.html { render action: "edit" }

@@ -8,13 +8,15 @@
 		<div class="list <%= alternate %>">
 			<table>
 				<tr>
-					<td>
-						<i class="icon-move"></i>
+					<td class="drag">
+						<%= web.placement %>
+					</td>
+					<td class='image'>
+						<%= "<div class='inner' style='background-color:#{web.photos.first.background_color}'>".html_safe %>
+							<%= image_tag web.photos.first.image.url(:thumb) %>
+						</div>
 					</td>
 					<td class="title">
-						<%= image_tag web.photos.first.image.url(:thumb) %>
-					</td>
-					<td>
 						<%= web.title %>
 					</td>
 					<td class="action">
@@ -23,7 +25,7 @@
 						<% end %>
 					</td>
 					<td class="action">
-						<%= link_to [:admin, web], :confirm => "Delete #{web.title}?", :method => :delete do %>
+						<%= link_to [:admins, web], :confirm => "Delete #{web.title}?", :method => :delete do %>
 							<i class="icon-remove"></i>
 						<% end %>
 					</td>
