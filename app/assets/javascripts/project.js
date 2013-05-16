@@ -48,7 +48,7 @@ ProjectWindow.prototype.css = function(project){
 }
 
 ProjectWindow.prototype.openTransition = function(){
-	jQuery("#project-window").animate({height: this.height}, 1000);
+	jQuery("#project-window").animate({height: this.height}, 600);
 }
 
 ProjectWindow.prototype.updateTransition = function(project){
@@ -63,7 +63,7 @@ ProjectWindow.prototype.updateTransition = function(project){
 }
 
 ProjectWindow.prototype.closeTransition = function(callback){
-	jQuery("#project-window").animate({height: "0px"}, 1000, function(){
+	jQuery("#project-window").animate({height: "0px"}, 600, function(){
 		jQuery("#project-window").remove();
 		callback();
 	});
@@ -100,7 +100,7 @@ jQuery(document).ready(function(){
     		projectWindow.openTransition();
     		jQuery('html, body').animate({
 			   	scrollTop: jQuery("#project-window").offset().top - 80
-		   	}, 1000);
+		   	}, 600);
     	});
     });
 	});
