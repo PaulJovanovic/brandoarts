@@ -68,7 +68,7 @@ class Admins::WebsController < ApplicationController
     web = Web.where(:id => params[:id]).last
 
     if web
-	    Photo.where(:project_id => params[:id]).each do |photo|
+	    Photo.where(:imageable_id => params[:id]).each do |photo|
 	    	photo.destroy
 	  	end
 			web.destroy

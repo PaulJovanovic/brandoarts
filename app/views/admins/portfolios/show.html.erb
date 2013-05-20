@@ -1,0 +1,9 @@
+<div class="section">
+	<div class="two-third">
+	</div>
+	<div class="one-third">
+		<% @portfolio.photos.each do |photo| %>
+			<%= image_tag photo.image.url(:small) %>
+		<% end %>
+	</div>
+</div>

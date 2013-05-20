@@ -440,6 +440,12 @@ table td.one-sixth {
 
 #project-window .inner {
 	position: relative;
+	margin:auto;
+	text-align: center;
+}
+
+#project-window .inner img {
+	margin:auto;
 }
 
 #project-window:after{
@@ -476,10 +482,11 @@ table td.one-sixth {
 	position:absolute;
 	right:0;
 	top:0;
-	bottom:4px;
+	bottom:0px;
 	background: #282627;
   background: rgba(0,0,0,0.4); 
 	color: #fff;
+	text-align: left;
 }
 
 #project-window .information h2 {

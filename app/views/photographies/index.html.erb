@@ -1,20 +1,20 @@
 <%= javascript_include_tag "project" %>
 <div class="ptl">
-	<% if @portfolios.count > 0 %>
+	<% if @photographies.count > 0 %>
 		<% controller_singular = "photo" %>
 		<% index = 0 %>
-		<% @portfolios.each do |portfolio| %>
+		<% @photographies.each do |photography| %>
 			<% if index % 3 == 0 %>
 				<div class="container">
 					<div class="padding pvn">
 						<div class="section">
 							<div class="row">
 			<% end %>
-								<%= "<div class='project' data-controller='#{controller_singular}' data-id='#{portfolio.id}'><div class='inner'>".html_safe %>
-									<%= image_tag portfolio.photos.first.image.url(:small) %>
+								<%= "<div class='project' data-controller='#{controller_singular}' data-id='#{photography.id}'><div class='inner'>".html_safe %>
+									<%= image_tag photography.photos.first.image.url(:small) %>
 									</div>
 								</div>
-			<% if index % 3 == 2  || index == @portfolios.length - 1 %>
+			<% if index % 3 == 2  || index == @photographies.length - 1 %>
 							</div>
 						</div>
 					</div>

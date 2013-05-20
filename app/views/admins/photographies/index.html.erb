@@ -1,0 +1,37 @@
+<div class="section">
+	<%= link_to new_admins_photography_path do %>
+		<div class="btn" style="float:right">add project</div>
+	<% end %>
+	<h1 style="padding-top:5px;">Photography</h1>
+	<% alternate = "odd" %>
+	<% @photographies.each do |photography| %>
+		<div class="list <%= alternate %>">
+			<table>
+				<tr>
+					<td class="drag">
+						<%= photography.placement %>
+					</td>
+					<td class='image'>
+						<%= "<div class='inner'>".html_safe %>
+							<%= image_tag photography.photos.first.image.url(:thumb) %>
+						</div>
+					</td>
+					<td class="title">
+						Photo
+					</td>
+					<td class="action">
+						<%= link_to edit_admins_photography_path(photography) do %>
+							<i class="icon-edit"></i>
+						<% end %>
+					</td>
+					<td class="action">
+						<%= link_to [:admins, photography], :confirm => "Delete photo?", :method => :delete do %>
+							<i class="icon-remove"></i>
+						<% end %>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<% alternate = alternate == "odd" ? "even" : "odd" %>
+	<% end %>
+</div>

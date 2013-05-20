@@ -5,6 +5,8 @@ Brandoarts::Application.routes.draw do
   namespace :admins do
     resources :brandings
     resources :webs
+    resources :photographies
+    resources :portfolios
   end
 
   devise_for :admins
@@ -12,7 +14,7 @@ Brandoarts::Application.routes.draw do
 
   resources :portfolios, :path => "portfolio"
   resources :clients
-  resources :photos, :path => "photo"
+  resources :photographies, :path => "photo"
   resources :brandings, :path => "branding"
   resources :webs, :path => "web"
 
