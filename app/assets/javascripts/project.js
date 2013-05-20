@@ -107,11 +107,11 @@ ProjectWindow.prototype.updateFields = function(){
 
 ProjectWindow.prototype.fadeIn = function(){
 	this.updateFields();
-	jQuery("#project-window").fadeTo(this.transitionSpeed, 1);
+	jQuery("#project-window .inner").fadeTo(this.transitionSpeed, 1);
 }
 
 ProjectWindow.prototype.fadeOut = function(callback){
-	jQuery("#project-window").fadeTo(this.transitionSpeed, .01, function(){
+	jQuery("#project-window .inner").fadeTo(this.transitionSpeed, .01, function(){
 		callback();
 	});
 }
