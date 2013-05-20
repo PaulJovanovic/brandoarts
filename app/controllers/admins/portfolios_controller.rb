@@ -27,11 +27,11 @@ class Admins::PortfoliosController < ApplicationController
 
 		if @portfolio.save
 	  	respond_to do |format|
-	      format.html  { redirect_to(admins_portofolio_path(@portfolio),
+	      format.html  { redirect_to(admins_portfolio_path(@portfolio),
 	                    :notice => 'Misc was successfully created.') }
 	    end
     else
-      redirect_to new_admins_portofolio_path
+      redirect_to new_admins_portfolio_path
     end
 	end
 
@@ -65,7 +65,7 @@ class Admins::PortfoliosController < ApplicationController
   end
 
 	def destroy
-    porfolio = Portfolio.where(:id => params[:id]).last
+    portfolio = Portfolio.where(:id => params[:id]).last
 
     if portfolio
 	    Photo.where(:imageable_id => params[:id]).each do |photo|
