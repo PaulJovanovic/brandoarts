@@ -68,7 +68,7 @@ class Admins::PortfoliosController < ApplicationController
     portfolio = Portfolio.where(:id => params[:id]).last
 
     if portfolio
-	    Photo.where(:imageable_id => params[:id]).each do |photo|
+	    portfolio.photos.each do |photo|
 	    	photo.destroy
 	  	end
 			portfolio.destroy

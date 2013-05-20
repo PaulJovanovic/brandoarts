@@ -68,7 +68,7 @@ class Admins::PhotographiesController < ApplicationController
     photography = Photography.where(:id => params[:id]).last
 
     if photography
-	    Photo.where(:imageable_id => params[:id]).each do |photo|
+	    photography.photos.each do |photo|
 	    	photo.destroy
 	  	end
 			photography.destroy

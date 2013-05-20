@@ -68,7 +68,7 @@ class Admins::BrandingsController < ApplicationController
     branding = Branding.where(:id => params[:id]).last
 
     if branding
-	    Photo.where(:imageable_id => params[:id]).each do |photo|
+	    branding.photos.each do |photo|
 	    	photo.destroy
 	  	end
 			branding.destroy
