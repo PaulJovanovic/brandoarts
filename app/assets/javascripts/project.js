@@ -100,7 +100,7 @@ ProjectWindow.prototype.remove = function(){
 
 ProjectWindow.prototype.updateFields = function(){
 	jQuery("#project-window").css("backgroundColor", backgroundColor(this.project));
-	jQuery("#project-window .image img").attr("src", this.project.photos[this.project.current_photo].url);
+	jQuery("#project-window img").attr("src", this.project.photos[this.project.current_photo].url);
 	jQuery("#project-window .information h2").html(this.project.title);
 	jQuery("#project-window .information p").html(this.project.description);
 }
