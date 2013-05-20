@@ -22,7 +22,7 @@ class Admins::PortfoliosController < ApplicationController
 	end
 
 	def create
-		@portfolio = Portfolio.new(params[:portofolio])
+		@portfolio = Portfolio.new(params[:portfolio])
 		@portfolio.placement = Portfolio.count
 
 		if @portfolio.save
@@ -56,7 +56,7 @@ class Admins::PortfoliosController < ApplicationController
     @portfolio = Portfolio.where(:id => params[:id]).last
 
     respond_to do |format|
-      if @portfolio.update_attributes(params[:portofolio])
+      if @portfolio.update_attributes(params[:portfolio])
         format.html { redirect_to admins_portfolios_path, notice: 'Misc was successfully updated.' }
       else
         format.html { render action: "edit" }

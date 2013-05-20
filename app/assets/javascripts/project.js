@@ -70,6 +70,7 @@ ProjectWindow.prototype.update = function($project){
 	var $this = this;
 	$this.fadeOut(function(){
 		$this.getData($project, function(){
+			$this.resize();
 			$this.fadeIn();
 		});
 	});
@@ -114,6 +115,13 @@ ProjectWindow.prototype.fadeOut = function(callback){
 	jQuery("#project-window .inner").fadeTo(this.transitionSpeed, .01, function(){
 		callback();
 	});
+}
+
+ProjectWindow.prototype.resize = function(){
+	var $this = this;
+	var img = new Image();
+  img.src = $this.project.photos[$this.project.current_photo].url;
+  jQuery("#project-window").animate({height: $this.height}, $this.transitionSpeed);
 }
 
 ProjectWindow.prototype.css = function(){

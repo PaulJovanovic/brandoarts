@@ -2,7 +2,7 @@
   <%= form_for [:admins, @portfolio], :html => {:multipart => true, :class => "submittable"} do |f| %>
     <% if @portfolio.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@portfolio.errors.count, "error") %> prohibited this branding from being saved:</h2>
+        <h2><%= pluralize(@portfolio.errors.count, "error") %> prohibited this misc from being saved:</h2>
 
         <ul>
         <% @portfolio.errors.full_messages.each do |msg| %>
