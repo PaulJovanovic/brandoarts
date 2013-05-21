@@ -50,7 +50,7 @@
   var image_count = jQuery(".multiple-image").length;
   jQuery(document).ready(function(){
     jQuery(".add-image").click(function(){
-      var image = "<div class='field'><input id='branding_photos_attributes_" + image_count + "_image' type='file' name='branding[photos_attributes][" + image_count + "][image]' /><br/>";
+      var image = "<div class='field'><input id='web_photos_attributes_" + image_count + "_image' type='file' name='web[photos_attributes][" + image_count + "][image]' /><br/>";
       image_count ++;
       jQuery(".field:last").after(image);
     });

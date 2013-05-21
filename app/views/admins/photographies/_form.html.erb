@@ -2,7 +2,7 @@
   <%= form_for [:admins, @photography], :html => {:multipart => true, :class => "submittable"} do |f| %>
     <% if @photography.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@photography.errors.count, "error") %> prohibited this branding from being saved:</h2>
+        <h2><%= pluralize(@photography.errors.count, "error") %> prohibited this photography from being saved:</h2>
 
         <ul>
         <% @photography.errors.full_messages.each do |msg| %>
@@ -38,7 +38,7 @@
   var image_count = jQuery(".multiple-image").length;
   jQuery(document).ready(function(){
     jQuery(".add-image").click(function(){
-      var image = "<div class='field'><input id='branding_photos_attributes_" + image_count + "_image' type='file' name='branding[photos_attributes][" + image_count + "][image]' /><br/>";
+      var image = "<div class='field'><input id='photography_photos_attributes_" + image_count + "_image' type='file' name='photography[photos_attributes][" + image_count + "][image]' /><br/>";
       image_count ++;
       jQuery(".field:last").after(image);
     });
