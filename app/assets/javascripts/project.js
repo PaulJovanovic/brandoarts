@@ -7,19 +7,59 @@ var backgroundColor = function(project){
 	return project.photos[project.current_photo].background_color;
 }
 
-var ProjectWindow = function(){
+var ProjectWindow = function() {
 	this.isOpen = false;
+	this.imageReady = false;
+	this.transitionReady = false;
 	this.project = null;
-	this.index = null;
 	this.height = 0;
+	this.index = null;
 	this.transitionSpeed = 600;
+	this.queue = [];
 }
 
-ProjectWindow.prototype.getData = function($project, callback){
+ProjectWindow.prototype.showProject = function($project) {
 	var $this = this;
-	jQuery.ajax({
+	$this.imageReady = false;
+	$this.transitionReady = false;
+	$this.getData($project);
+	var rowIndex = Math.floor($(".project").index($project) / 3);
+	//if a project is open
+	if ($this.isOpen){
+		//if project is in the same row
+		if($this.index == rowIndex){
+			$this.fadeOut(function(){
+				$this.queue.push(function() {
+					$this.update($project);
+				});
+				$this.blockerFinished("transition");
+			});
+		}
+		else{
+			$this.index = rowIndex;
+			$this.close(function(){
+				$this.queue.push(function() {
+					$this.updateFields();
+					$this.open();
+				});
+				$this.blockerFinished("transition");
+			});
+		}
+	}
+	else {
+		$this.index = rowIndex;
+		$this.queue.push(function(){
+			$this.create();
+		});
+		$this.blockerFinished("transition");
+	}
+}
+
+ProjectWindow.prototype.getData = function($project){
+	var $this = this;
+	$.ajax({
 		type: "GET",
-		url: "/" + jQuery($project).attr("data-controller") + "/" + jQuery($project).attr("data-id"),
+		url: "/" + $($project).attr("data-controller") + "/" + $($project).attr("data-id"),
 		datatype: "JSON"
 	}).success(function(data){
 		$this.project = new Project(data);
@@ -27,92 +67,73 @@ ProjectWindow.prototype.getData = function($project, callback){
     img.src = $this.project.photos[$this.project.current_photo].url;
 		img.onload = function() {
     	$this.height = this.height + 140;
-			callback();
+    	$this.blockerFinished("image");
     }
 	});
 }
 
-ProjectWindow.prototype.showProject = function($project){
-	var $this = this;
-	var rowIndex = Math.floor(jQuery(".project").index($project) / 3);
-	//if a project is open
-	if ($this.isOpen){
-		//if project is in the same row
-		if($this.index == rowIndex){
-			$this.update($project);
-		}
-		else{
-			$this.index = rowIndex;
-			$this.close(function(){
-				$this.getData($project, function(){
-					$this.updateFields();
-					$this.open($project);
-				});
-			});
-		}
+ProjectWindow.prototype.blockerFinished = function(blocker) {
+	this[blocker + "Ready"] = true;
+	if (this.transitionReady && this.imageReady) {
+		this.emptyQueue();
 	}
-	else {
-		$this.index = rowIndex;
-		$this.create($project);
+}
+
+ProjectWindow.prototype.emptyQueue = function() {
+	for (var i = 0; i < this.queue.length; i++) {
+		this.queue[i]();
 	}
+	this.queue = [];
 }
 
 ProjectWindow.prototype.create = function($project){
 	var $this = this;
-	$this.isOpen = true;
-	$this.getData($project, function(){
-		jQuery("#content .container").eq($this.index).after($this.css());
-		$this.open();
-	});
+	$("#content .container").eq($this.index).after($this.css());
+	$this.open();
 }
 
 ProjectWindow.prototype.update = function($project){
-	var $this = this;
-	$this.fadeOut(function(){
-		$this.getData($project, function(){
-			$this.resize();
-			$this.fadeIn();
-		});
-	});
+	this.resize();
+	this.fadeIn();
 }
 
 ProjectWindow.prototype.open = function(){
 	var $this = this;
 	$this.isOpen = true;
-	var temp = jQuery("#project-window").detach();
-	jQuery("#content .container").eq($this.index).after(temp);
-	jQuery("#project-window").animate({height: $this.height}, $this.transitionSpeed);
-	jQuery('html, body').animate({
-   	scrollTop: jQuery("#project-window").offset().top - 80
+	var temp = $("#project-window").detach();
+	$("#content .container").eq($this.index).after(temp);
+	$("#project-window").animate({height: $this.height}, $this.transitionSpeed);
+	$('html, body').animate({
+   	scrollTop: $("#project-window").offset().top - 80
  	}, $this.transitionSpeed);
 }
 
 ProjectWindow.prototype.close = function(callback){
 	var $this = this;
 	$this.isOpen = false;
-	jQuery("#project-window").animate({height: "0px"}, $this.transitionSpeed, function(){
+	$("#project-window").animate({height: "0px"}, 2 * $this.transitionSpeed / 3, function(){
 		callback();
 	});
 }
 
 ProjectWindow.prototype.remove = function(){
-	jQuery("#project-window").remove();
+	$("#project-window").remove();
 }
 
 ProjectWindow.prototype.updateFields = function(){
-	jQuery("#project-window").css("backgroundColor", backgroundColor(this.project));
-	jQuery("#project-window img").attr("src", this.project.photos[this.project.current_photo].url);
-	jQuery("#project-window .information h2").html(this.project.title);
-	jQuery("#project-window .information p").html(this.project.description);
+	$("#project-window").css("backgroundColor", backgroundColor(this.project));
+	$("#project-window img").attr("src", this.project.photos[this.project.current_photo].url);
+	$("#project-window .information h2").html(this.project.title);
+	$("#project-window .information p").html(this.project.description);
 }
 
 ProjectWindow.prototype.fadeIn = function(){
 	this.updateFields();
-	jQuery("#project-window .inner").fadeTo(this.transitionSpeed, 1);
+	$("#project-window .inner").fadeTo(this.transitionSpeed, 1);
 }
 
 ProjectWindow.prototype.fadeOut = function(callback){
-	jQuery("#project-window .inner").fadeTo(this.transitionSpeed, .01, function(){
+	$("#project-window .inner").fadeTo(this.transitionSpeed, .01, function(){
 		callback();
 	});
 }
@@ -121,7 +142,7 @@ ProjectWindow.prototype.resize = function(){
 	var $this = this;
 	var img = new Image();
   img.src = $this.project.photos[$this.project.current_photo].url;
-  jQuery("#project-window").animate({height: $this.height}, $this.transitionSpeed);
+  $("#project-window").animate({height: $this.height}, $this.transitionSpeed);
 }
 
 ProjectWindow.prototype.css = function(){
@@ -155,17 +176,10 @@ var Project = function(project) {
 	return this;
 };
 
-jQuery(document).ready(function(){
+$(document).ready(function(){
 	var projectWindow = new ProjectWindow();
 
-	jQuery(".project").click(function(){
+	$(".project").click(function(){
 		projectWindow.showProject(this);
 	});
 });
-
-//click project
-//start lock
-//close
-//load image / data
-//open
-//end lock
