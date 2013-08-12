@@ -1,5 +1,3 @@
-var project_click = false;
-
 var backgroundColor = function(project){
 	if (!project.photos[project.current_photo].background_color){
 		return "#282627";
@@ -7,12 +5,13 @@ var backgroundColor = function(project){
 	return project.photos[project.current_photo].background_color;
 }
 
-var ProjectWindow = function() {
+var ProjectWindow = function(hasTitle) {
+	this.hasTitle = hasTitle;
 	this.isOpen = false;
 	this.imageReady = false;
 	this.transitionReady = false;
 	this.project = null;
-	this.height = 0;
+	this.height = 40;
 	this.index = null;
 	this.transitionSpeed = 600;
 	this.queue = [];
@@ -37,6 +36,7 @@ ProjectWindow.prototype.showProject = function($project) {
 		}
 		else{
 			$this.index = rowIndex;
+			$this.refocusInitial($project);
 			$this.close(function(){
 				$this.queue.push(function() {
 					$this.updateFields();
@@ -48,14 +48,26 @@ ProjectWindow.prototype.showProject = function($project) {
 	}
 	else {
 		$this.index = rowIndex;
+		$this.refocusInitial($project);
+		$this.create();
 		$this.queue.push(function(){
-			$this.create();
-		});
+			$this.hideSpinner();
+			$this.updateFields();
+			$this.resize();
+		})
 		$this.blockerFinished("transition");
 	}
 }
 
-ProjectWindow.prototype.getData = function($project){
+ProjectWindow.prototype.showSpinner = function() {
+	$("#project-window .spinner").show();
+}
+
+ProjectWindow.prototype.hideSpinner = function() {
+	$("#project-window .spinner").hide();
+}
+
+ProjectWindow.prototype.getData = function($project) {
 	var $this = this;
 	$.ajax({
 		type: "GET",
@@ -86,6 +98,29 @@ ProjectWindow.prototype.emptyQueue = function() {
 	this.queue = [];
 }
 
+ProjectWindow.prototype.refocusInitial = function(project_div) {
+	var $project = $(project_div);
+	var extra = 0;
+	if ($("#project-window").length > 0){
+		if ($project.offset().top > $("#project-window").offset().top){
+			extra = $("#project-window").height();
+		}
+	}
+	$('html, body').stop().animate({
+   	scrollTop: $project.offset().top + $project.outerHeight() - extra - 55
+ 	}, this.transitionSpeed, function(){
+ 		console.log("Initial: " + $("body").scrollTop());
+ 	});
+}
+
+ProjectWindow.prototype.refocusFinal = function() {
+	$('html, body').stop().animate({
+   	scrollTop: $("#project-window").offset().top - 80
+ 	}, this.transitionSpeed, function(){
+ 		console.log("Final: " + $("body").scrollTop());
+ 	});
+}
+
 ProjectWindow.prototype.create = function($project){
 	var $this = this;
 	$("#content .container").eq($this.index).after($this.css());
@@ -103,9 +138,7 @@ ProjectWindow.prototype.open = function(){
 	var temp = $("#project-window").detach();
 	$("#content .container").eq($this.index).after(temp);
 	$("#project-window").animate({height: $this.height}, $this.transitionSpeed);
-	$('html, body').animate({
-   	scrollTop: $("#project-window").offset().top - 80
- 	}, $this.transitionSpeed);
+	$this.refocusFinal();
 }
 
 ProjectWindow.prototype.close = function(callback){
@@ -128,8 +161,11 @@ ProjectWindow.prototype.updateFields = function(){
 }
 
 ProjectWindow.prototype.fadeIn = function(){
-	this.updateFields();
-	$("#project-window .inner").fadeTo(this.transitionSpeed, 1);
+	var $this = this;
+	$this.updateFields();
+	$("#project-window .inner").fadeTo(this.transitionSpeed, 1, function(){
+		$this.refocusFinal();
+	});
 }
 
 ProjectWindow.prototype.fadeOut = function(callback){
@@ -146,10 +182,12 @@ ProjectWindow.prototype.resize = function(){
 }
 
 ProjectWindow.prototype.css = function(){
-	if(typeof this.project.title !== "undefined"){
-		return "<div id='project-window' style='background-color:"+backgroundColor(this.project)+"'><div class='container'><div class='padding'><div class='inner'><div class='image'><img src='"+this.project.photos[this.project.current_photo].url+"'/></div><div class='information'><div class='pal'><h2>"+this.project.title+"</h2><p>"+this.project.description+"</p></div></div></div></div></div></div>";
+	if (this.hasTitle){
+		return "<div id='project-window'><div class='spinner'><div class='inner'></div></div><div class='container'><div class='padding'><div class='inner'><div class='image'><img src=''/></div><div class='information'><div class='pal'><h2></h2><p></p></div></div></div></div></div></div>";
 	}
-	return "<div id='project-window' style='background-color:"+backgroundColor(this.project)+"'><div class='container'><div class='padding'><div class='inner'><img src='"+this.project.photos[this.project.current_photo].url+"'/></div></div></div></div></div>";
+	else {
+		return "<div id='project-window'><div class='spinner'><div class='inner'></div></div><div class='container'><div class='padding'><div class='inner'><img src=''/></div></div></div></div>";
+	}
 }
 
 var Photo = function(url, background_color){
@@ -177,7 +215,7 @@ var Project = function(project) {
 };
 
 $(document).ready(function(){
-	var projectWindow = new ProjectWindow();
+	var projectWindow = new ProjectWindow($(".project:first").attr("data-title") == "true");
 
 	$(".project").click(function(){
 		projectWindow.showProject(this);
