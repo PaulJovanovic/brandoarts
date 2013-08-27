@@ -108,17 +108,13 @@ ProjectWindow.prototype.refocusInitial = function(project_div) {
 	}
 	$('html, body').stop().animate({
    	scrollTop: $project.offset().top + $project.outerHeight() - extra - 55
- 	}, this.transitionSpeed, function(){
- 		console.log("Initial: " + $("body").scrollTop());
- 	});
+ 	}, this.transitionSpeed);
 }
 
 ProjectWindow.prototype.refocusFinal = function() {
 	$('html, body').stop().animate({
    	scrollTop: $("#project-window").offset().top - 80
- 	}, this.transitionSpeed, function(){
- 		console.log("Final: " + $("body").scrollTop());
- 	});
+ 	}, this.transitionSpeed);
 }
 
 ProjectWindow.prototype.create = function($project){
@@ -183,10 +179,10 @@ ProjectWindow.prototype.resize = function(){
 
 ProjectWindow.prototype.css = function(){
 	if (this.hasTitle){
-		return "<div id='project-window'><div class='spinner'><div class='inner'></div></div><div class='container'><div class='padding'><div class='inner'><div class='image'><img src=''/></div><div class='information'><div class='pal'><h2></h2><p></p></div></div></div></div></div></div>";
+		return "<div id='project-window'><div class='spinner'><div class='inner'></div></div><div class='container'><div class='close'><i class='icon-remove-sign button'></i>CLOSE</div><div class='padding'><div class='inner'><div class='image'><img src=''/></div><div class='information'><div class='pal'><h2></h2><p></p></div></div></div></div></div></div>";
 	}
 	else {
-		return "<div id='project-window'><div class='spinner'><div class='inner'></div></div><div class='container'><div class='padding'><div class='inner'><img src=''/></div></div></div></div>";
+		return "<div id='project-window'><div class='spinner'><div class='inner'></div></div><div class='container'><div class='close'><i class='icon-remove-sign button'></i>CLOSE</div><div class='padding'><div class='inner'><img src=''/></div></div></div></div>";
 	}
 }
 
@@ -220,4 +216,8 @@ $(document).ready(function(){
 	$(".project").click(function(){
 		projectWindow.showProject(this);
 	});
+
+	$("body").on("click", ".close", function() {
+		projectWindow.close(projectWindow.remove);
+	})
 });

@@ -434,6 +434,21 @@ table td.one-sixth {
                       inset 0 -20px 20px -20px rgba(0,0,0,.8);
 }
 
+#project-window .close {
+	background-color: rgba(0,0,0,0.4);
+	color: #FFFFFF;
+	cursor: pointer;
+	font-size: 12px;
+	margin: auto;
+	padding: 4px 14px;
+	text-align: center;
+	width: 60px;
+}
+
+#project-window .close .button {
+	margin-right: 8px;
+}
+
 #project-window .padding{
 	padding-top: 60px;
 	padding-bottom: 80px;
