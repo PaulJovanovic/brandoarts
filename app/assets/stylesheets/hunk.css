@@ -27,13 +27,13 @@ body {
 	width: 100%;
 }
 
-a {
+a, a * {
 	color: #fff;
 	text-decoration: none;
 }
 
-a:hover {
-	color: #6d6e71;
+a:hover, a:hover * {
+	color: #A4D9CE;
 }
 
 h1, h2, h3, h4, h5, p {
@@ -41,6 +41,7 @@ h1, h2, h3, h4, h5, p {
 }
 
 table {
+	border-collapse: collapse;
 	width: 100%;
 }
 
@@ -123,7 +124,7 @@ table.push-top td{
 
 #header #navbar .navbar-option {
 	float:right;
-	color: #6d6e71;
+	color: #A4D9CE;
 }
 
 #header #navbar .navbar-option + .navbar-option {
@@ -396,7 +397,6 @@ table td.one-sixth {
 }
 
 #footer h2{
-	color: #fff;
 	font-size:18px;
 	margin:0;
 }
@@ -424,7 +424,6 @@ table td.one-sixth {
 	background-color: rgb(209, 211, 212);
 	height:0px;
 	overflow: hidden;
-	margin-top:25px;
 	position: relative;
 	-moz-box-shadow:    inset 0  20px 20px -20px rgba(0,0,0,.8),
                       inset 0 -20px 20px -20px rgba(0,0,0,.8);
@@ -434,15 +433,21 @@ table td.one-sixth {
                       inset 0 -20px 20px -20px rgba(0,0,0,.8);
 }
 
-#project-window .close {
-	background-color: rgba(0,0,0,0.4);
+#project-window .close-container {
 	color: #FFFFFF;
 	cursor: pointer;
 	font-size: 12px;
-	margin: auto;
-	padding: 4px 14px;
+	left: 50%;
+	position: absolute;
 	text-align: center;
 	width: 60px;
+}
+
+#project-window .close {
+	background-color: rgba(0,0,0,0.4);
+	margin-left: -50%;
+	padding: 4px 14px;
+	position: relative;
 }
 
 #project-window .close .button {
@@ -530,4 +535,8 @@ table td.one-sixth {
 #project-window .information p {
 	color: #fff;
 	font-size:14px;
+}
+
+.small-text {
+	font-size: 12px;
 }

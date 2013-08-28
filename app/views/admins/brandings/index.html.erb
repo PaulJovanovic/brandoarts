@@ -4,34 +4,36 @@
 	<% end %>
 	<h1 style="padding-top:5px;">Branding</h1>
 	<% alternate = "odd" %>
-	<% @brandings.each do |branding| %>
-		<div class="list <%= alternate %>">
-			<table>
-				<tr>
-					<td class="drag">
-						<%= branding.placement %>
-					</td>
-					<td class='image'>
-						<%= "<div class='inner' style='background-color:#{branding.photos.first.background_color}'>".html_safe %>
-							<%= image_tag branding.photos.first.image.url(:thumb) %>
-						</div>
-					</td>
-					<td class="title">
-						<%= branding.title %>
-					</td>
-					<td class="action">
-						<%= link_to edit_admins_branding_path(branding) do %>
-							<i class="icon-edit"></i>
-						<% end %>
-					</td>
-					<td class="action">
-						<%= link_to [:admins, branding], :confirm => "Delete #{branding.title}?", :method => :delete do %>
-							<i class="icon-remove"></i>
-						<% end %>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<% alternate = alternate == "odd" ? "even" : "odd" %>
-	<% end %>
+	<div id="sortable">
+		<% @brandings.each do |branding| %>
+			<div class="list <%= alternate %>">
+				<table>
+					<tr>
+						<td class="drag">
+							<%= branding.placement %>
+						</td>
+						<td class='image'>
+							<%= "<div class='inner' style='background-color:#{branding.photos.first.background_color}'>".html_safe %>
+								<%= image_tag branding.photos.first.image.url(:thumb) %>
+							</div>
+						</td>
+						<td class="title">
+							<%= branding.title %>
+						</td>
+						<td class="action">
+							<%= link_to edit_admins_branding_path(branding) do %>
+								<i class="icon-edit"></i>
+							<% end %>
+						</td>
+						<td class="action">
+							<%= link_to [:admins, branding], :confirm => "Delete #{branding.title}?", :method => :delete do %>
+								<i class="icon-remove"></i>
+							<% end %>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<% alternate = alternate == "odd" ? "even" : "odd" %>
+		<% end %>
+	</div>
 </div>
