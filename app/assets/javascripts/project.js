@@ -180,10 +180,10 @@ ProjectWindow.prototype.resize = function(){
 
 ProjectWindow.prototype.css = function(){
 	if (this.hasTitle){
-		return "<div id='project-window'><div class='spinner'><div class='inner'></div></div><div class='container'><div class='close-container'><div class='close'><i class='icon-remove-sign button'></i>CLOSE</div></div><div class='padding'><div class='inner'><div class='image'><img src=''/></div><div class='information'><div class='pal'><h2></h2><p></p></div></div></div></div></div></div>";
+		return "<div id='project-window'><div class='spinner'><div class='inner'></div></div><div class='container'><div class='close-container'><div class='close'><i class='icon-remove button'></i>CLOSE</div></div><div class='padding'><div class='inner'><div class='image'><img src=''/></div><div class='information'><div class='pal'><h2></h2><p></p></div></div></div></div></div></div>";
 	}
 	else {
-		return "<div id='project-window'><div class='spinner'><div class='inner'></div></div><div class='container'><div class='close-container'><div class='close'><i class='icon-remove-sign button'></i>CLOSE</div></div><div class='padding'><div class='inner'><img src=''/></div></div></div></div>";
+		return "<div id='project-window'><div class='spinner'><div class='inner'></div></div><div class='container'><div class='close-container'><div class='close'><i class='icon-remove button'></i>CLOSE</div></div><div class='padding'><div class='inner'><img src=''/></div></div></div></div>";
 	}
 }
 
