@@ -25,13 +25,13 @@
 									<%= link_to "photo", photographies_path %>
 								</li>
 								<li>
-									<%= link_to "portfolio", portfolios_path %>
+									<%= link_to "misc", portfolios_path %>
 								</li>
 								<li>
 									<%= link_to "clients", clients_path %>
 								</li>
 								<li>
-									<a href="/assets/Resume.pdf">resume</a>
+									<%= link_to "resume", Attachment.first.resume.url %>
 								</li>
 								<li>
 									<%= link_to "admin", admins_path %>

@@ -7,6 +7,7 @@ Brandoarts::Application.routes.draw do
     resources :webs
     resources :photographies
     resources :portfolios
+    resource :attachments
   end
 
   devise_for :admins
