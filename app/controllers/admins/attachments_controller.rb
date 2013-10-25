@@ -10,11 +10,11 @@ class Admins::AttachmentsController < ApplicationController
   end
 
   def new
-    @attachment = Attachment.new
+    @attachment = Attachment.new(admin_id: current_admin.id)
   end
 
   def create
-    @attachment = Attachment.new(params[:attachment].merge(admin_id: current_admin.id))
+    @attachment = Attachment.new(params[:attachment])
     if @attachment.save
       flash[:notice] = "Well done."
       redirect_to admins_path

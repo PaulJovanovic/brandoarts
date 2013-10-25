@@ -1,5 +1,6 @@
 <div class="section">
   <%= form_for([:admins, @attachment]) do |f| %>
+    <%= f.hidden_field :admin_id, value: @attachment.admin_id %>
     <div class="two-thirds">
       <div class="prl">
         <div class="field">
