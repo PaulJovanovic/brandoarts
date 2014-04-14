@@ -1,5 +1,6 @@
 <div class="ptl pbl">
   <% if @modelings.count > 0 %>
+    <% controller_singular = "modeling" %>
     <% index = 0 %>
     <% @modelings.each do |modeling| %>
       <% if index % 3 == 0 %>
@@ -8,7 +9,7 @@
             <div class="section">
               <div class="row">
       <% end %>
-                <%= "<div class='project' data-title='true' data-controller='#{controller_name[0..-2]}' data-id='#{modeling.id}'><div class='inner' style='background-color:#{modeling.photos.first.background_color}'>".html_safe %>
+                <%= "<div class='project' data-controller='#{controller_singular}' data-id='#{modeling.id}'><div class='inner'>".html_safe %>
                   <%= image_tag modeling.photos.first.image.url(:small) %>
                   </div>
                 </div>
