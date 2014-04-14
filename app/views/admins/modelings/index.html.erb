@@ -1,0 +1,37 @@
+<div class="section">
+  <%= link_to new_admins_modeling_path do %>
+    <div class="btn" style="float:right">add modeling</div>
+  <% end %>
+  <h1 style="padding-top:5px;">Modeling</h1>
+  <% alternate = "odd" %>
+  <% @modelings.each do |modeling| %>
+    <div class="list <%= alternate %>">
+      <table>
+        <tr>
+          <td class="drag">
+            <%= modeling.placement %>
+          </td>
+          <td class='image'>
+            <%= "<div class='inner'>".html_safe %>
+              <%= image_tag modeling.photos.first.image.url(:thumb) %>
+            </div>
+          </td>
+          <td class="title">
+            Photo
+          </td>
+          <td class="action">
+            <%= link_to edit_admins_modeling_path(modeling) do %>
+              <i class="icon-edit"></i>
+            <% end %>
+          </td>
+          <td class="action">
+            <%= link_to [:admins, modeling], :confirm => "Delete photo?", :method => :delete do %>
+              <i class="icon-remove"></i>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <% alternate = alternate == "odd" ? "even" : "odd" %>
+  <% end %>
+</div>

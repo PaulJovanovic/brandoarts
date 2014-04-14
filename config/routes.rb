@@ -7,6 +7,7 @@ Brandoarts::Application.routes.draw do
     resources :webs
     resources :photographies
     resources :portfolios
+    resources :modelings
     resource :attachments
   end
 
@@ -18,6 +19,7 @@ Brandoarts::Application.routes.draw do
   resources :photographies, :path => "photo"
   resources :brandings, :path => "branding"
   resources :webs, :path => "web"
+  resources :modelings, :path => "modeling"
 
   root :to => "home#index"
 end

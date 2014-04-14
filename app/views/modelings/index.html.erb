@@ -1,0 +1,32 @@
+<div class="ptl pbl">
+  <% if @modelings.count > 0 %>
+    <% index = 0 %>
+    <% @modelings.each do |modeling| %>
+      <% if index % 3 == 0 %>
+        <div class="container">
+          <div class="padding pvn">
+            <div class="section">
+              <div class="row">
+      <% end %>
+                <%= "<div class='project' data-title='true' data-controller='#{controller_name[0..-2]}' data-id='#{modeling.id}'><div class='inner' style='background-color:#{modeling.photos.first.background_color}'>".html_safe %>
+                  <%= image_tag modeling.photos.first.image.url(:small) %>
+                  </div>
+                </div>
+      <% if index % 3 == 2  || index == @modelings.length - 1 %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <% index += 1 %>
+    <% end %>
+  <% else %>
+    <div class="container">
+      <div class="padding">
+        <div class="section">
+          <h1>No modeling done yet!</h1>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

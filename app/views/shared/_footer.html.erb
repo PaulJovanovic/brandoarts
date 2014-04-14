@@ -31,7 +31,7 @@
 									<%= link_to "clients", clients_path %>
 								</li>
 								<li>
-									<%= link_to "resume", Attachment.where(admin_id: 2).last.resume.url %>
+									<%= link_to "resume", Attachment.where(admin_id: 2).last.try(:resume).try(:url) %>
 								</li>
 								<li>
 									<%= link_to "admin", admins_path %>
